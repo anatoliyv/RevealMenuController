@@ -1,4 +1,4 @@
-![RevealMenuController](https://cloud.githubusercontent.com/assets/1595032/18164385/37484428-7048-11e6-924d-2509b7d56131.png)
+![RevealMenuController](https://travis-ci.org/anatoliyv/RevealMenuController.svg?branch=master)
 
 [![CI Status](http://img.shields.io/travis/anatoliyv//RevealMenuController.svg?style=flat)](https://travis-ci.org/anatoliyv/RevealMenuController)
 [![Version](https://img.shields.io/cocoapods/v/RevealMenuController.svg?style=flat)](http://cocoapods.org/pods/RevealMenuController)
