@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'RevealMenuController'
-  s.version          = '0.1.0'
+  s.version          = 'v.0.1.0'
   s.summary          = 'Menu controller with expandable item groups, custom position and appearance animation written with Swift.'
 
 # This description is used to generate tags and improve search results.
