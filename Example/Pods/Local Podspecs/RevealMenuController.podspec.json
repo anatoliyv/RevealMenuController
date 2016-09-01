@@ -1,0 +1,28 @@
+{
+  "name": "RevealMenuController",
+  "version": "0.1.0",
+  "summary": "A short description of RevealMenuController.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/<GITHUB_USERNAME>/RevealMenuController",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "Anatoliy Voropay": "anatoliy.voropay@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/<GITHUB_USERNAME>/RevealMenuController.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "RevealMenuController/Classes/**/*",
+  "frameworks": "UIKit",
+  "dependencies": {
+    "SMIconLabel": [
+
+    ]
+  }
+}

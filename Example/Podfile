@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'RevealMenuController_Example' do
+  pod 'RevealMenuController', :path => '../'
+
+  target 'RevealMenuController_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end

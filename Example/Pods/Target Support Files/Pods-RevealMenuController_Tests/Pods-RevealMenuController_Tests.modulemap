@@ -1,0 +1,6 @@
+framework module Pods_RevealMenuController_Tests {
+  umbrella header "Pods-RevealMenuController_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}
