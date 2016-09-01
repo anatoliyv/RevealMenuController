@@ -26,7 +26,7 @@ Similar to AuctionSheet style of UIAlertController.
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Anatoliy Voropay' => 'anatoliy.voropay@gmail.com' }
-  s.source           = { :git => 'https://github.com/anatoliyv/RevealMenuController.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/anatoliyv/RevealMenuController.git', :tag => "v.0.1.0" }
   s.social_media_url = 'https://twitter.com/anatoliy_v'
 
   s.ios.deployment_target = '8.0'
