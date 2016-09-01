@@ -93,7 +93,7 @@ controller.dismissViewControllerAnimated(true, completion: {
 
 #### RevealMenuAction
 
-RevealMenuAction can be initialized in few ways. Title is always required for action. Image is an optional value. Default text alignment is `Center`. Handler is also required but if you will not specify this property there will be no response for user tap on this item.
+RevealMenuAction can be initialized in few ways. Title is always required for action. Image is an optional value. Default text alignment is `Center`. Handler is also not required but if you will not specify this property there will be no response for user tap on this item.
 
 List of initializers:
 
