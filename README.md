@@ -14,6 +14,10 @@ Features:
 - [x] Custom presentation position (top, center or bottom)
 - [x] Custom text alignment
 - [x] Menu items can have images
+ 
+Here are few screenshot with possible usage. I've added a [small video](https://github.com/anatoliyv/RevealMenuController/blob/master/Example/ExampleVideo.mov) (~5Mb) also where you can see live example without installation and launching demo project.
+
+![RevealMenuController](https://cloud.githubusercontent.com/assets/1595032/18165230/bf610d0a-704c-11e6-860d-747a4002fc1b.png)
 
 ## Installation
 
