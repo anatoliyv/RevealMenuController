@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/anatoliyv/RevealMenuController.git",
-    "tag": "0.1.0"
+    "tag": "v.0.1.0"
   },
   "social_media_url": "https://twitter.com/anatoliy_v",
   "platforms": {
@@ -23,7 +23,7 @@
   "frameworks": "UIKit",
   "dependencies": {
     "SMIconLabel": [
-      "~> 0.1.0"
+
     ]
   }
 }
