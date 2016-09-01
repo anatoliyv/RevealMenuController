@@ -39,5 +39,5 @@ Similar to AuctionSheet style of UIAlertController.
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   s.frameworks = 'UIKit'
-  s.dependency 'SMIconLabel', '~> 0.1.0'
+  s.dependency 'SMIconLabel'
 end
