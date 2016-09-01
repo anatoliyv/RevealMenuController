@@ -76,12 +76,12 @@ public class RevealMenuCell: UITableViewCell {
                   imagePosition: .Right)
     }
 
-    private func customize(title: String?, textAlignment: NSTextAlignment, font: UIFont, image: UIImage?, imagePosition: SMIconLabelPosition) {
+    private func customize(title: String?, textAlignment: NSTextAlignment, font: UIFont, image: UIImage?, imagePosition: SMIconHorizontalPosition) {
         titleLabel.text = title
         titleLabel.textAlignment = textAlignment
         titleLabel.font = font
         titleLabel.icon = image
-        titleLabel.iconPosition = imagePosition
+        titleLabel.iconPosition = ( imagePosition, .Center )
     }
 
     // MARK: Round corners

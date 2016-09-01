@@ -1,9 +1,9 @@
 {
   "name": "RevealMenuController",
   "version": "0.1.0",
-  "summary": "A short description of RevealMenuController.",
-  "description": "TODO: Add long description of the pod here.",
-  "homepage": "https://github.com/<GITHUB_USERNAME>/RevealMenuController",
+  "summary": "Menu controller with expandable item groups, custom position and appearance animation written with Swift.",
+  "description": "Menu controller with expandable item groups, custom position and appearance animation written with Swift.\nSimilar to AuctionSheet style of UIAlertController.",
+  "homepage": "https://github.com/anatoliyv/RevealMenuController",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
@@ -12,9 +12,10 @@
     "Anatoliy Voropay": "anatoliy.voropay@gmail.com"
   },
   "source": {
-    "git": "https://github.com/<GITHUB_USERNAME>/RevealMenuController.git",
+    "git": "https://github.com/anatoliyv/RevealMenuController.git",
     "tag": "0.1.0"
   },
+  "social_media_url": "https://twitter.com/anatoliy_v",
   "platforms": {
     "ios": "8.0"
   },
@@ -22,7 +23,7 @@
   "frameworks": "UIKit",
   "dependencies": {
     "SMIconLabel": [
-
+      "~> 0.1.0"
     ]
   }
 }
