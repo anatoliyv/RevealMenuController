@@ -1,6 +1,6 @@
-![RevealMenuController](https://travis-ci.org/anatoliyv/RevealMenuController.svg?branch=master)
+![RevealMenuController](https://cloud.githubusercontent.com/assets/1595032/18164385/37484428-7048-11e6-924d-2509b7d56131.png)
 
-[![CI Status](http://img.shields.io/travis/anatoliyv//RevealMenuController.svg?style=flat)](https://travis-ci.org/anatoliyv/RevealMenuController)
+![RevealMenuController](https://travis-ci.org/anatoliyv/RevealMenuController.svg?branch=master)
 [![Version](https://img.shields.io/cocoapods/v/RevealMenuController.svg?style=flat)](http://cocoapods.org/pods/RevealMenuController)
 [![License](https://img.shields.io/cocoapods/l/RevealMenuController.svg?style=flat)](http://cocoapods.org/pods/RevealMenuController)
 [![Platform](https://img.shields.io/cocoapods/p/RevealMenuController.svg?style=flat)](http://cocoapods.org/pods/RevealMenuController)
