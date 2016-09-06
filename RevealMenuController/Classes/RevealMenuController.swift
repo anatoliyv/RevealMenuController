@@ -233,7 +233,7 @@ public class RevealMenuController: UIViewController {
 
     public override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
         updateTableViewFrameForSize(size)
-        updateTableInsetsForHeight(size.height)
+        updateTableInsetsForHeight(size.height - Constants.SideMargin * 2.5)
         tableView.reloadData()
     }
 
@@ -243,7 +243,7 @@ public class RevealMenuController: UIViewController {
 
     private func updateTableInsetsForHeight(height: CGFloat) {
         let contentHeight: CGFloat = CGFloat(itemsList.count) * Constants.CellHeight
-            + ( displayCancel ? Constants.CellHeight + Constants.SideMargin / 2 : 0 )
+            + ( displayCancel ? Constants.CellHeight : 0 )
 
         switch position {
         case .Top:
