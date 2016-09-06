@@ -55,7 +55,7 @@ public class RevealMenuAction: RevealMenuActionProtocol {
     /// - Parameter handler:    Handler will be called right after menu item is pressed.
     ///
     public convenience init(title: String, image: UIImage?, handler: RevealControllerHandler?) {
-        self.init(title: title, image: image, alignment: .Center, handler: handler)
+        self.init(title: title, image: image, alignment: .center, handler: handler)
     }
 
     ///
@@ -78,7 +78,7 @@ public class RevealMenuAction: RevealMenuActionProtocol {
     /// - Parameter handler:    Handler will be called right after menu item is pressed.
     ///
     public convenience init(title: String, handler: RevealControllerHandler?) {
-        self.init(title: title, image: nil, alignment: .Center, handler: handler)
+        self.init(title: title, image: nil, alignment: .center, handler: handler)
     }
 }
 
@@ -139,7 +139,7 @@ public class RevealMenuActionGroup: RevealMenuActionProtocol {
     /// - Parameter actions:    Array of actions that will be displayed once user tap on current action group.
     ///
     public convenience init(title: String, image: UIImage, actions: [RevealMenuAction]) {
-        self.init(title: title, image: image, alignment: .Center, actions: actions)
+        self.init(title: title, image: image, alignment: .center, actions: actions)
     }
 
     ///
@@ -150,6 +150,6 @@ public class RevealMenuActionGroup: RevealMenuActionProtocol {
     /// - Parameter actions:    Array of actions that will be displayed once user tap on current action group.
     ///
     public convenience init(title: String, actions: [RevealMenuAction]) {
-        self.init(title: title, image: nil, alignment: .Center, actions: actions)
+        self.init(title: title, image: nil, alignment: .center, actions: actions)
     }
 }
