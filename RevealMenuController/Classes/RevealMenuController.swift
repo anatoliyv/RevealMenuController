@@ -264,9 +264,16 @@ public class RevealMenuController: UIViewController {
     }
 
     private func updateTableViewFrameForSize(size: CGSize) {
-        tableView.frame = CGRect(x: Constants.SideMargin, y: Constants.SideMargin,
-                                 width: size.width - Constants.SideMargin * 2,
-                                 height: size.height - Constants.SideMargin * 2)
+        if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
+            let width = size.width * 0.5
+            tableView.frame = CGRect(x: (size.width - width) / 2, y: Constants.SideMargin,
+                                     width: width - Constants.SideMargin * 2,
+                                     height: size.height - Constants.SideMargin * 2)
+        } else {
+            tableView.frame = CGRect(x: Constants.SideMargin, y: Constants.SideMargin,
+                                     width: size.width - Constants.SideMargin * 2,
+                                     height: size.height - Constants.SideMargin * 2)
+        }
     }
 }
 
@@ -279,6 +286,7 @@ extension RevealMenuController: UITableViewDelegate {
     }
 
     public func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        guard section != 0 else { return 0 }
         return ( displayCancel ? Constants.SideMargin / 2 : 0 )
     }
 }
