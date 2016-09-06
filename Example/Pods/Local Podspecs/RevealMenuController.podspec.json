@@ -1,6 +1,6 @@
 {
   "name": "RevealMenuController",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "summary": "Menu controller with expandable item groups, custom position and appearance animation written with Swift.",
   "description": "Menu controller with expandable item groups, custom position and appearance animation written with Swift.\nSimilar to AuctionSheet style of UIAlertController.",
   "homepage": "https://github.com/anatoliyv/RevealMenuController",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/anatoliyv/RevealMenuController.git",
-    "tag": "v.0.1.0"
+    "tag": "v.0.2.0"
   },
   "social_media_url": "https://twitter.com/anatoliy_v",
   "platforms": {

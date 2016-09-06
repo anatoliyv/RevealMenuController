@@ -1,7 +1,7 @@
 PODS:
-  - RevealMenuController (0.1.0):
+  - RevealMenuController (0.2.0):
     - SMIconLabel
-  - SMIconLabel (0.1.0)
+  - SMIconLabel (0.3.0)
 
 DEPENDENCIES:
   - RevealMenuController (from `../`)
@@ -11,8 +11,8 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  RevealMenuController: 04688deb1f37981744b33c8d1b0e8ad172834b3a
-  SMIconLabel: fcd2b17983bc512ea03de9e0aebbab0da6bbd7e5
+  RevealMenuController: 1bd1a14d75fd213c340c0223ab31aa8e6e306e48
+  SMIconLabel: 8f52289cfe8d738f26b07ff7408a1774356accaf
 
 PODFILE CHECKSUM: b077d650d34d7b0266c32e3b9430f43d5128655d
 
