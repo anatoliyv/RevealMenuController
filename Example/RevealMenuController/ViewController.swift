@@ -10,8 +10,8 @@ import RevealMenuController
 
 class ViewController: UIViewController {
 
-    @IBAction func presentActionScheet(sender: AnyObject) {
-        let position: RevealMenuPosition = ( sender.tag == 0 ? .Top : ( sender.tag == 1 ? .Center : .Bottom ))
+    @IBAction func presentActionScheet(_ sender: AnyObject) {
+        let position: RevealMenuPosition = ( sender.tag == 0 ? .top : ( sender.tag == 1 ? .center : .bottom ))
         let revealController = RevealMenuController(title: "Contact Support", position: position)
         let webImage = UIImage(named: "IconHome")
         let emailImage = UIImage(named: "IconEmail")
@@ -19,7 +19,7 @@ class ViewController: UIViewController {
 
         let webAction = RevealMenuAction(title: "Open web page", image: webImage, handler: { (controller, action) in
             print(action.title)
-            controller.dismissViewControllerAnimated(true, completion: nil)
+            controller.dismiss(animated: true, completion: nil)
         })
         revealController.addAction(webAction)
 
@@ -49,8 +49,8 @@ class ViewController: UIViewController {
         revealController.displayOnController(self)
     }
 
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
 }
 

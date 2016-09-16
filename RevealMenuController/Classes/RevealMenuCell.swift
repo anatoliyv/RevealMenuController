@@ -27,9 +27,9 @@ public class RevealMenuCell: UITableViewCell {
     }
 
     private enum CustomizationFor {
-        case Action
-        case ActionGroup
-        case Cancel
+        case action
+        case actionGroup
+        case cancel
     }
 
     private var item: RevealMenuActionProtocol?
@@ -40,7 +40,7 @@ public class RevealMenuCell: UITableViewCell {
     public override func awakeFromNib() {
         super.awakeFromNib()
 
-        selectionStyle = .None
+        selectionStyle = .none
         titleLabel.textColor = tintColor
         titleLabel.iconPadding = Constants.ImagePadding
         titleLabel.numberOfLines = 1
@@ -51,37 +51,37 @@ public class RevealMenuCell: UITableViewCell {
 
     // MARK: Customization
 
-    public func customizeFor(action action: RevealMenuAction) {
+    public func customizeFor(action: RevealMenuAction) {
         self.item = action
-        customizedFor = .Action
+        customizedFor = .action
 
         customize(action.title, textAlignment: action.alignment,
-                  font: UIFont.systemFontOfSize(18), image: action.image,
-                  imagePosition: ( action.alignment == .Right ? .Right : .Left ))
+                  font: UIFont.systemFont(ofSize: 18), image: action.image,
+                  imagePosition: ( action.alignment == .right ? .right : .left ))
     }
 
-    public func customizeFor(actionGroup actionGroup: RevealMenuActionGroup) {
+    public func customizeFor(actionGroup: RevealMenuActionGroup) {
         self.item = actionGroup
-        customizedFor = .ActionGroup
+        customizedFor = .actionGroup
 
         customize(actionGroup.title, textAlignment: actionGroup.alignment,
-                  font: UIFont.boldSystemFontOfSize(18), image: actionGroup.image,
-                  imagePosition: ( actionGroup.alignment == .Right ? .Right : .Left ))
+                  font: UIFont.boldSystemFont(ofSize: 18), image: actionGroup.image,
+                  imagePosition: ( actionGroup.alignment == .right ? .right : .left ))
     }
 
     public func customizeForCancel() {
-        customizedFor = .Cancel
-        customize(NSLocalizedString("Cancel", comment: ""), textAlignment: .Center,
-                  font: UIFont.boldSystemFontOfSize(18), image: nil,
-                  imagePosition: .Right)
+        customizedFor = .cancel
+        customize(NSLocalizedString("Cancel", comment: ""), textAlignment: .center,
+                  font: UIFont.boldSystemFont(ofSize: 18), image: nil,
+                  imagePosition: .right)
     }
 
-    private func customize(title: String?, textAlignment: NSTextAlignment, font: UIFont, image: UIImage?, imagePosition: SMIconHorizontalPosition) {
+    private func customize(_ title: String?, textAlignment: NSTextAlignment, font: UIFont, image: UIImage?, imagePosition: SMIconHorizontalPosition) {
         titleLabel.text = title
         titleLabel.textAlignment = textAlignment
         titleLabel.font = font
         titleLabel.icon = image
-        titleLabel.iconPosition = ( imagePosition, .Center )
+        titleLabel.iconPosition = ( imagePosition, .center )
     }
 
     // MARK: Round corners
@@ -89,18 +89,18 @@ public class RevealMenuCell: UITableViewCell {
     public func customizeCorners(topCornered top: Bool, bottomCornered bottom: Bool) {
         var corners: UIRectCorner = []
 
-        if top { corners = [ .TopRight, .TopLeft ] }
-        if bottom { corners = [ .BottomRight, .BottomLeft ] }
-        if top && bottom { corners = [ .TopRight, .TopLeft, .BottomRight, .BottomLeft ] }
+        if top { corners = [ .topRight, .topLeft ] }
+        if bottom { corners = [ .bottomRight, .bottomLeft ] }
+        if top && bottom { corners = [ .topRight, .topLeft, .bottomRight, .bottomLeft ] }
 
         let path = UIBezierPath(roundedRect: bounds,
                                 byRoundingCorners: corners,
-                                cornerRadii: CGSizeMake(Constants.CorenerRadius, Constants.CorenerRadius))
+                                cornerRadii: CGSize(width: Constants.CorenerRadius, height: Constants.CorenerRadius))
 
         let maskLayer = CAShapeLayer()
-        maskLayer.path = path.CGPath
+        maskLayer.path = path.cgPath
         maskLayer.shouldRasterize = true
-        maskLayer.rasterizationScale = UIScreen.mainScreen().scale
+        maskLayer.rasterizationScale = UIScreen.main.scale
 
         layer.mask = maskLayer
     }
@@ -115,17 +115,17 @@ public class RevealMenuCell: UITableViewCell {
 
     // MARK: Actions
 
-    @IBAction func pressedBackground(sender: AnyObject?) {
+    @IBAction func pressedBackground(_ sender: AnyObject?) {
         guard let customizedFor = customizedFor else { return }
 
         switch customizedFor {
-        case .Action:
+        case .action:
             delegate?.revealMenuCell(self, didPressedWithItem: item as! RevealMenuAction)
 
-        case .ActionGroup:
+        case .actionGroup:
             delegate?.revealMenuCell(self, didPressedWithItem: item as! RevealMenuActionGroup)
 
-        case .Cancel:
+        case .cancel:
             delegate?.revealMenuCellDidPressedCancel(self)
         }
     }

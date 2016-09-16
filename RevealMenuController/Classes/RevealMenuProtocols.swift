@@ -33,8 +33,8 @@ public protocol RevealMenuActionProtocol {
 public protocol RevealMenuCellDelegate : class {
 
     /// RevealMenuCell did pressed event
-    func revealMenuCell(cell: RevealMenuCell, didPressedWithItem item: RevealMenuActionProtocol)
+    func revealMenuCell(_ cell: RevealMenuCell, didPressedWithItem item: RevealMenuActionProtocol)
 
     /// RevealMenuCell  with Cancel button pressed
-    func revealMenuCellDidPressedCancel(cell: RevealMenuCell)
+    func revealMenuCellDidPressedCancel(_ cell: RevealMenuCell)
 }

@@ -16,9 +16,9 @@ import Foundation
 /// - Parameter Right:  Text will be right aligned, image will be on the right side toward text
 ///
 public enum RevealMenuActionTextAlignment {
-    case Left
-    case Center
-    case Right
+    case left
+    case center
+    case right
 }
 
 ///
@@ -29,7 +29,7 @@ public enum RevealMenuActionTextAlignment {
 /// - Parameter Bottom: Menu is on the bottom of a screen. Appearance animation is bottom-to-top.
 ///
 public enum RevealMenuPosition {
-    case Top
-    case Center
-    case Bottom
+    case top
+    case center
+    case bottom
 }
