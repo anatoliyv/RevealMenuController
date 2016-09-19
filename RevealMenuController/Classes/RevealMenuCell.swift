@@ -51,7 +51,7 @@ open class RevealMenuCell: UITableViewCell {
 
     // MARK: Customization
 
-    open func customizeFor(action action: RevealMenuAction) {
+    open func customizeFor(action: RevealMenuAction) {
         self.item = action
         customizedFor = .action
 
@@ -60,7 +60,7 @@ open class RevealMenuCell: UITableViewCell {
                   imagePosition: ( action.alignment == .right ? .right : .left ))
     }
 
-    open func customizeFor(actionGroup actionGroup: RevealMenuActionGroup) {
+    open func customizeFor(actionGroup: RevealMenuActionGroup) {
         self.item = actionGroup
         customizedFor = .actionGroup
 

@@ -19,7 +19,6 @@
 /* Begin PBXFileReference section */
 		18A559CE1D782881003685EB /* background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background.jpg; sourceTree = SOURCE_ROOT; };
 		25B9014588294400A9675BC6 /* RevealMenuController.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = RevealMenuController.podspec; path = ../RevealMenuController.podspec; sourceTree = "<group>"; };
-		44856A12456F76E28AB4A09D /* Pods-RevealMenuController_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RevealMenuController_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RevealMenuController_Tests/Pods-RevealMenuController_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		579C22E4B6758DB06E39403B /* Pods-RevealMenuController_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RevealMenuController_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-RevealMenuController_Example/Pods-RevealMenuController_Example.release.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* RevealMenuController_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RevealMenuController_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -28,14 +27,11 @@
 		607FACDA1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		89FC6550DB9B688D3924622A /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		A17BF932551CFB7F3D8177D3 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		C56199084FCED9B52D453A7D /* Pods_RevealMenuController_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RevealMenuController_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBD6DE13D8E69E0B2EB0D420 /* Pods-RevealMenuController_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RevealMenuController_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RevealMenuController_Example/Pods-RevealMenuController_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		DC02F8CEC9198119A8F8DF42 /* Pods_RevealMenuController_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RevealMenuController_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F17FB0FD24764564FEB26DAD /* Pods-RevealMenuController_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RevealMenuController_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RevealMenuController_Tests/Pods-RevealMenuController_Tests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,7 +60,6 @@
 			children = (
 				607FACF51AFB993E008FA782 /* Podspec Metadata */,
 				607FACD21AFB9204008FA782 /* Example for RevealMenuController */,
-				607FACE81AFB9204008FA782 /* Tests */,
 				607FACD11AFB9204008FA782 /* Products */,
 				65CD271B656043072BF8BD28 /* Pods */,
 				18FD04F204933218BB74F730 /* Frameworks */,
@@ -102,23 +97,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		607FACE81AFB9204008FA782 /* Tests */ = {
-			isa = PBXGroup;
-			children = (
-				607FACEB1AFB9204008FA782 /* Tests.swift */,
-				607FACE91AFB9204008FA782 /* Supporting Files */,
-			);
-			path = Tests;
-			sourceTree = "<group>";
-		};
-		607FACE91AFB9204008FA782 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				607FACEA1AFB9204008FA782 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		607FACF51AFB993E008FA782 /* Podspec Metadata */ = {
 			isa = PBXGroup;
 			children = (
@@ -134,8 +112,6 @@
 			children = (
 				CBD6DE13D8E69E0B2EB0D420 /* Pods-RevealMenuController_Example.debug.xcconfig */,
 				579C22E4B6758DB06E39403B /* Pods-RevealMenuController_Example.release.xcconfig */,
-				44856A12456F76E28AB4A09D /* Pods-RevealMenuController_Tests.debug.xcconfig */,
-				F17FB0FD24764564FEB26DAD /* Pods-RevealMenuController_Tests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -314,7 +290,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
+				ENABLE_TESTABILITY = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
