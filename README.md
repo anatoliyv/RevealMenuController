@@ -4,8 +4,8 @@
 [![Version](https://img.shields.io/cocoapods/v/RevealMenuController.svg?style=flat)](http://cocoapods.org/pods/RevealMenuController)
 [![License](https://img.shields.io/cocoapods/l/RevealMenuController.svg?style=flat)](http://cocoapods.org/pods/RevealMenuController)
 [![Platform](https://img.shields.io/cocoapods/p/RevealMenuController.svg?style=flat)](http://cocoapods.org/pods/RevealMenuController)
-![](https://img.shields.io/badge/Supported-iOS8-4BC51D.svg?style=flat-square)
-![](https://img.shields.io/badge/Swift 2-compatible-4BC51D.svg?style=flat-square)
+![](https://img.shields.io/badge/Supported-iOS8-4BC51D.svg?style=flat)
+![](https://img.shields.io/badge/Swift 3-compatible-4BC51D.svg?style=flat)
 
 Easy to implement controller with expanding menu items. Design is very simple to iOS native ActionSheet presentation style of a UIAlertController. As an additional feature you can set small image icon beside menu item text. Take a look at example screenshot to see all available features.
 
