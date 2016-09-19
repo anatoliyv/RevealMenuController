@@ -14,21 +14,21 @@ import Foundation
 ///
 /// - Seealso: `RevealControllerHandler`
 ///
-public class RevealMenuAction: RevealMenuActionProtocol {
+open class RevealMenuAction: RevealMenuActionProtocol {
 
     public typealias RevealControllerHandler = ((RevealMenuController, RevealMenuAction) -> Void)
 
     /// Title for action
-    public private(set) var title: String?
+    open fileprivate(set) var title: String?
 
     /// Text alignment. Default is `Center`
-    public private(set) var alignment: NSTextAlignment
+    open fileprivate(set) var alignment: NSTextAlignment
 
     /// Label icon image
-    public private(set) var image: UIImage?
+    open fileprivate(set) var image: UIImage?
 
     /// Selection handler
-    public private(set) var handler: RevealControllerHandler?
+    open fileprivate(set) var handler: RevealControllerHandler?
 
     // MARK: Lifecycle
 
@@ -88,20 +88,20 @@ public class RevealMenuAction: RevealMenuActionProtocol {
 ///
 /// - Seealso: `RevealMenuAction`
 ///
-public class RevealMenuActionGroup: RevealMenuActionProtocol {
+open class RevealMenuActionGroup: RevealMenuActionProtocol {
 
     /// Title for action group
-    public private(set) var title: String?
+    open fileprivate(set) var title: String?
 
     /// Label icon image
-    public private(set) var image: UIImage?
+    open fileprivate(set) var image: UIImage?
 
     /// Text alignment. Default value is `Center`
-    public private(set) var alignment: NSTextAlignment
+    open fileprivate(set) var alignment: NSTextAlignment
 
     /// Array of actions inside a group
     /// - Seealso: `RevealMenuAction`
-    public private(set) var actions: [RevealMenuAction] = []
+    open fileprivate(set) var actions: [RevealMenuAction] = []
 
     ///
     /// Initialize action group with title, image, text alignment and array of actions.

@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'RevealMenuController'
-  s.version          = '0.2.0'
+  s.version          = '0.3.0'
   s.summary          = 'Menu controller with expandable item groups, custom position and appearance animation written with Swift.'
 
 # This description is used to generate tags and improve search results.
@@ -26,7 +26,7 @@ Similar to AuctionSheet style of UIAlertController.
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Anatoliy Voropay' => 'anatoliy.voropay@gmail.com' }
-  s.source           = { :git => 'https://github.com/anatoliyv/RevealMenuController.git', :tag => "v.0.2.0" }
+  s.source           = { :git => 'https://github.com/anatoliyv/RevealMenuController.git', :tag => "v.0.3.0" }
   s.social_media_url = 'https://twitter.com/anatoliy_v'
 
   s.ios.deployment_target = '8.0'

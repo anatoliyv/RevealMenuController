@@ -14,30 +14,30 @@ import SMIconLabel
 ///
 /// - Seealso: `RevealMenuAction`, `RevealMenuActionGroup`
 ///
-public class RevealMenuCell: UITableViewCell {
+open class RevealMenuCell: UITableViewCell {
 
     @IBOutlet var titleLabel: SMIconLabel!
 
     /// Delegate to support `RevealMenuCellDelegate` events
-    public weak var delegate: RevealMenuCellDelegate?
+    open weak var delegate: RevealMenuCellDelegate?
 
-    private struct Constants {
+    fileprivate struct Constants {
         static let CorenerRadius = CGFloat(8)
         static let ImagePadding  = CGFloat(5)
     }
 
-    private enum CustomizationFor {
+    fileprivate enum CustomizationFor {
         case action
         case actionGroup
         case cancel
     }
 
-    private var item: RevealMenuActionProtocol?
-    private var customizedFor: CustomizationFor?
+    fileprivate var item: RevealMenuActionProtocol?
+    fileprivate var customizedFor: CustomizationFor?
 
     // MARK: Lifecycle
 
-    public override func awakeFromNib() {
+    open override func awakeFromNib() {
         super.awakeFromNib()
 
         selectionStyle = .none
@@ -51,7 +51,7 @@ public class RevealMenuCell: UITableViewCell {
 
     // MARK: Customization
 
-    public func customizeFor(action: RevealMenuAction) {
+    open func customizeFor(action action: RevealMenuAction) {
         self.item = action
         customizedFor = .action
 
@@ -60,7 +60,7 @@ public class RevealMenuCell: UITableViewCell {
                   imagePosition: ( action.alignment == .right ? .right : .left ))
     }
 
-    public func customizeFor(actionGroup: RevealMenuActionGroup) {
+    open func customizeFor(actionGroup actionGroup: RevealMenuActionGroup) {
         self.item = actionGroup
         customizedFor = .actionGroup
 
@@ -69,14 +69,14 @@ public class RevealMenuCell: UITableViewCell {
                   imagePosition: ( actionGroup.alignment == .right ? .right : .left ))
     }
 
-    public func customizeForCancel() {
+    open func customizeForCancel() {
         customizedFor = .cancel
         customize(NSLocalizedString("Cancel", comment: ""), textAlignment: .center,
                   font: UIFont.boldSystemFont(ofSize: 18), image: nil,
                   imagePosition: .right)
     }
 
-    private func customize(_ title: String?, textAlignment: NSTextAlignment, font: UIFont, image: UIImage?, imagePosition: SMIconHorizontalPosition) {
+    fileprivate func customize(_ title: String?, textAlignment: NSTextAlignment, font: UIFont, image: UIImage?, imagePosition: SMIconHorizontalPosition) {
         titleLabel.text = title
         titleLabel.textAlignment = textAlignment
         titleLabel.font = font
@@ -86,7 +86,7 @@ public class RevealMenuCell: UITableViewCell {
 
     // MARK: Round corners
 
-    public func customizeCorners(topCornered top: Bool, bottomCornered bottom: Bool) {
+    open func customizeCorners(topCornered top: Bool, bottomCornered bottom: Bool) {
         var corners: UIRectCorner = []
 
         if top { corners = [ .topRight, .topLeft ] }
@@ -105,7 +105,7 @@ public class RevealMenuCell: UITableViewCell {
         layer.mask = maskLayer
     }
 
-    public override func prepareForReuse() {
+    open override func prepareForReuse() {
         item = nil
         titleLabel.icon = nil
         customizedFor = nil
