@@ -7,7 +7,7 @@
 ![](https://img.shields.io/badge/Supported-iOS8-4BC51D.svg?style=flat)
 ![](https://img.shields.io/badge/Swift 3-compatible-4BC51D.svg?style=flat)
 
-Easy to implement controller with expanding menu items. Design is very simple to iOS native ActionSheet presentation style of a UIAlertController. As an additional feature you can set small image icon beside menu item text. Take a look at example screenshot to see all available features.
+Easy to implement controller with expanding menu items. Design is very similar to iOS native ActionSheet presentation style of a UIAlertController. As an additional feature you can set small image icon beside menu item text. Take a look at example screenshot to see all available features.
 
 Features:
 - [x] Expandable menu groups
