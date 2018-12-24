@@ -8,102 +8,66 @@
 
 import Foundation
 
-///
 /// Basic Reveal Menu action. When selecting this item in a menu completion get called
 /// with `RevealControllerHandler` block
 ///
 /// - Seealso: `RevealControllerHandler`
-///
 open class RevealMenuAction: RevealMenuActionProtocol {
+    /// Text alignment inside menu items
+    ///
+    /// - Parameter left:   Text will be left aligned, image will be on the left side
+    /// - Parameter center: Text will be centered, image will be placed on the left side
+    /// - Parameter right:  Text will be right aligned, image will be on the right side toward text
+    public enum TextAlignment {
+        case left
+        case center
+        case right
+    }
 
     public typealias RevealControllerHandler = ((RevealMenuController, RevealMenuAction) -> Void)
 
     /// Title for action
-    open fileprivate(set) var title: String?
-
+    open private(set) var title: String?
     /// Text alignment. Default is `Center`
-    open fileprivate(set) var alignment: NSTextAlignment
-
+    open private(set) var alignment: NSTextAlignment
     /// Label icon image
-    open fileprivate(set) var image: UIImage?
-
+    open private(set) var image: UIImage?
     /// Selection handler
-    open fileprivate(set) var handler: RevealControllerHandler?
+    open private(set) var handler: RevealControllerHandler?
 
-    // MARK: Lifecycle
+    // MARK: - Lifecycle
 
-    ///
     /// Initialize action with all possible properties.
     ///
     /// - Parameter title:      Menu title. Required.
     /// - Parameter image:      Image icon that will be displayed beside a title. Optional.
     /// - Parameter alignment:  Text alignment inside a menu cell.
     /// - Parameter handler:    Handler will be called right after menu item is pressed.
-    ///
-    public required init(title: String, image: UIImage?, alignment: NSTextAlignment, handler: RevealControllerHandler?) {
+    public required init(
+        title: String, image: UIImage? = nil,
+        alignment: NSTextAlignment = .center, handler: RevealControllerHandler?) {
         self.title = title
         self.image = image
         self.alignment = alignment
         self.handler = handler
     }
-
-    ///
-    /// Initialize action with title, image and selection handler. Default text alignment is `Center`
-    ///
-    /// - Parameter title:      Menu title. Required.
-    /// - Parameter image:      Image icon that will be displayed beside a title. Optional.
-    /// - Parameter handler:    Handler will be called right after menu item is pressed.
-    ///
-    public convenience init(title: String, image: UIImage?, handler: RevealControllerHandler?) {
-        self.init(title: title, image: image, alignment: .center, handler: handler)
-    }
-
-    ///
-    /// Initialize action title, text alignment and selection handler. 
-    /// Menu item will not have any icon image.
-    ///
-    /// - Parameter title:      Menu title. Required.
-    /// - Parameter alignment:  Text alignment inside a menu cell.
-    /// - Parameter handler:    Handler will be called right after menu item is pressed.
-    ///
-    public convenience init(title: String, alignment: NSTextAlignment, handler: RevealControllerHandler?) {
-        self.init(title: title, image: nil, alignment: alignment, handler: handler)
-    }
-
-    ///
-    /// Initialize action with title and selection handler. 
-    /// Menu item will have no image and text alignment is set to default value.
-    ///
-    /// - Parameter title:      Menu title. Required.
-    /// - Parameter handler:    Handler will be called right after menu item is pressed.
-    ///
-    public convenience init(title: String, handler: RevealControllerHandler?) {
-        self.init(title: title, image: nil, alignment: .center, handler: handler)
-    }
 }
 
-///
 /// Use `RevealMenuActionGroup` to group few `RevealMenuAction`s in one menu item.
 /// Group shoul have it's own `title`, `image` and `alignment`.
 ///
 /// - Seealso: `RevealMenuAction`
-///
 open class RevealMenuActionGroup: RevealMenuActionProtocol {
-
     /// Title for action group
-    open fileprivate(set) var title: String?
-
+    open private(set) var title: String?
     /// Label icon image
-    open fileprivate(set) var image: UIImage?
-
+    open private(set) var image: UIImage?
     /// Text alignment. Default value is `Center`
-    open fileprivate(set) var alignment: NSTextAlignment
-
+    open private(set) var alignment: NSTextAlignment
     /// Array of actions inside a group
     /// - Seealso: `RevealMenuAction`
-    open fileprivate(set) var actions: [RevealMenuAction] = []
+    open private(set) var actions: [RevealMenuAction] = []
 
-    ///
     /// Initialize action group with title, image, text alignment and array of actions.
     ///
     /// - Parameter title:      Title for an action group. Required.
@@ -111,45 +75,10 @@ open class RevealMenuActionGroup: RevealMenuActionProtocol {
     /// - Parameter alignment:  Text alignment inside a menu item cell
     /// - Parameter actions:    Array of actions that will be displayed once user tap on current action group.
     ///
-    public required init(title: String, image: UIImage?, alignment: NSTextAlignment, actions: [RevealMenuAction]) {
+    public required init(title: String, image: UIImage? = nil, alignment: NSTextAlignment = .center, actions: [RevealMenuAction]) {
         self.title = title
         self.image = image
         self.alignment = alignment
         self.actions = actions
-    }
-
-    ///
-    /// Initialize action group with title, text alignment and array of actions.
-    /// Menu item will have no image.
-    ///
-    /// - Parameter title:      Title for an action group. Required.
-    /// - Parameter alignment:  Text alignment inside a menu item cell
-    /// - Parameter actions:    Array of actions that will be displayed once user tap on current action group.
-    ///
-    public convenience init(title: String, alignment: NSTextAlignment, actions: [RevealMenuAction]) {
-        self.init(title: title, image: nil, alignment: alignment, actions: actions)
-    }
-
-    ///
-    /// Initialize action group with title, image and array of actions. 
-    /// Text alignment will be set to default value
-    ///
-    /// - Parameter title:      Title for an action group. Required.
-    /// - Parameter image:      Image that will be displayed with a title.
-    /// - Parameter actions:    Array of actions that will be displayed once user tap on current action group.
-    ///
-    public convenience init(title: String, image: UIImage, actions: [RevealMenuAction]) {
-        self.init(title: title, image: image, alignment: .center, actions: actions)
-    }
-
-    ///
-    /// Initialize action group with title and array of actions.
-    /// Menu item will have no image and text alignment will be set to default value.
-    ///
-    /// - Parameter title:      Title for an action group. Required.
-    /// - Parameter actions:    Array of actions that will be displayed once user tap on current action group.
-    ///
-    public convenience init(title: String, actions: [RevealMenuAction]) {
-        self.init(title: title, image: nil, alignment: .center, actions: actions)
     }
 }

@@ -7,8 +7,7 @@
 
 import UIKit
 
-///
-/// Controller used to display list of items similar to ActionScheet style in `UIAlertController`. 
+/// Controller used to display list of items similar to ActionScheet style in `UIAlertController`.
 /// Main purpose is to have possibility to group elements and support image icons besides
 /// menu item text.
 ///
@@ -40,64 +39,62 @@ import UIKit
 /// // Display controller
 /// revealController.displayOnController(self)
 /// ```
-///
 open class RevealMenuController: UIViewController {
+    /// Position of a menu on a screen. Each position has it's own appearance animation.
+    ///
+    /// - Parameter top:    Menu is on a top of a screen. Appearance animation is top-to-bottom.
+    /// - Parameter center: Menu is on the center of a screen. Appearance animation is fade-in.
+    /// - Parameter bottom: Menu is on the bottom of a screen. Appearance animation is bottom-to-top.
+    public enum Position {
+        case top
+        case center
+        case bottom
+    }
 
     /// Position of a menu. Default is `Bottom`
-    open var position: RevealMenuPosition = .bottom
-
+    open var position: Position = .bottom
     /// If `true` cancel menu item will exists in a bottom of a list.
     /// Default value is `true`
     open var displayCancel: Bool = true
-
     /// If `true` controller will hide if tap outside of items area.
     /// Default value is `true`
     open var hideOnBackgorundTap: Bool = true
-
     /// Default status bar style
     open var statusBarStyle: UIStatusBarStyle = .lightContent
 
-    fileprivate struct Constants {
-        static let CellIdentifier = "RevealMenuCell"
-        static let SideMargin = CGFloat(20)
-        static let CellHeight = CGFloat(44)
+    private struct Constants {
+        static let cellIdentifier = "RevealMenuCell"
+        static let sideMargin = CGFloat(20)
+        static let cellHeight = CGFloat(44)
     }
 
-    ///
     /// Actions and/or ActionGgroups that will be displayed.
     ///
     /// - Seealso: `RevealMenuAction`, `RevealMenuActionGroup`
-    ///
-    fileprivate var items: [RevealMenuActionProtocol] = []
-    fileprivate var openedItems: [RevealMenuActionGroup] = []
-
+    private var items: [RevealMenuActionProtocol] = []
+    private var openedItems: [RevealMenuActionGroup] = []
     /// Representation of active menu items array containing opened groups and
     /// other actions.
-    fileprivate var itemsList: [RevealMenuActionProtocol] {
+    private var itemsList: [RevealMenuActionProtocol] {
         var list: [RevealMenuActionProtocol] = []
-
         for item in items {
             if let action = item as? RevealMenuAction {
                 list.append(action)
             } else if let actionGroup = item as? RevealMenuActionGroup {
                 list.append(actionGroup)
-
-                if openedItems.filter({ $0 === actionGroup}).count > 0 {
+                if openedItems.filter({ $0 === actionGroup }).count > 0 {
                     list.append(contentsOf: actionGroup.actions.map({ (action) -> RevealMenuAction in
                         return action
                     }))
                 }
             }
         }
-
         return list
     }
-
-    fileprivate lazy var tableView: UITableView = {
+    private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: CGRect.zero, style: .plain)
         tableView.separatorStyle = .none
         tableView.backgroundColor = UIColor.clear
-        //tableView.backgroundColor =
         tableView.delegate = self
         tableView.dataSource = self
         tableView.alwaysBounceVertical = false
@@ -105,11 +102,10 @@ open class RevealMenuController: UIViewController {
         return tableView
     }()
 
-    // MARK: Lifecycle
+    // MARK: - Lifecycle
 
-    public init(title: String?, position: RevealMenuPosition) {
+    public init(title: String?, position: Position) {
         super.init(nibName: nil, bundle: nil)
-
         self.title = title
         self.position = position
     }
@@ -120,185 +116,165 @@ open class RevealMenuController: UIViewController {
 
     open override func viewDidLoad() {
         super.viewDidLoad()
-
-        view.backgroundColor = UIColor.clear
-        registerNibWithName(Constants.CellIdentifier)
-
+        view.backgroundColor = .clear
+        registerNibWithName(Constants.cellIdentifier)
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(pressedBackground(_:)))
         view.addGestureRecognizer(recognizer)
     }
 
-    fileprivate func registerNibWithName(_ name: String) {
+    private func registerNibWithName(_ name: String) {
         let cellNibItem = UINib(nibName: name, bundle: Bundle(for: RevealMenuController.self))
         tableView.register(cellNibItem, forCellReuseIdentifier: name)
     }
 
-    // MARK: Adding actions
+    // MARK: - Adding actions
 
-    ///
     /// Add `RevealMenuAction` or `RevealMenuActionGroup` to current actions array.
     ///
     /// - Seealso: `RevealMenuAction`, `RevealMenuActionGroup`
-    ///
     open func addAction<T: RevealMenuActionProtocol>(_ item: T) {
         items.append(item)
     }
 
-    // MARK: Appearance and Disappeance
+    // MARK: - Appearance and Disappeance
 
-    ///
     /// Display `RevealMenuController` on a controller with or without animation and completion block.
     ///
     /// - Parameter controller:     RevealMenuController will be displayed in this controller
     /// - Parameter animated:       Will have appearance animation if `true`
     /// - Parameter completion:     Gets called once appearance animation finished
-    ///
-    open func displayOnController(_ controller: UIViewController, animated: Bool, completion: (() -> Void)?) {
+    open func displayOnController(
+        _ controller: UIViewController, animated: Bool = true, completion: (() -> Void)? = nil) {
         modalPresentationStyle = .overCurrentContext
+        addTableView()
+        updateTableViewFrame(true)
+        controller.present(
+            self,
+            animated: false,
+            completion: {
+                let timeInterval = TimeInterval(animated
+                    ? 0.2
+                    : 0)
+                UIView.animate(withDuration: timeInterval, animations: {
+                    self.updateTableViewFrame(false)
+                }, completion: { _ in
+                    completion?()
+                })
+            })
+    }
 
-        tableView.reloadData()
+    private func addTableView() {
         view.addSubview(tableView)
-        prepareForAnimation(true)
-
-        controller.present(self, animated: false, completion: {
-            let timeInterval = TimeInterval(animated ? 0.2 : 0)
-
-            UIView.animate(withDuration: timeInterval, animations: {
-                self.prepareForAnimation(false)
-            }, completion: { _ in
-                completion?()
-            })
-        })
+        tableView.reloadData()
     }
 
-    ///
-    /// Display `RevealMenuController` on a controller with or without animation.
-    ///
-    /// - Parameter controller:     RevealMenuController will be displayed in this controller
-    /// - Parameter animated:       Will have appearance animation if `true`
-    ///
-    open func displayOnController(_ controller: UIViewController, animated: Bool) {
-        displayOnController(controller, animated: animated, completion: nil)
-    }
-
-    ///
-    /// Display `RevealMenuController` on a controller with appearance animation.
-    ///
-    /// - Parameter controller:     RevealMenuController will be displayed in this controller
-    ///
-    open func displayOnController(_ controller: UIViewController) {
-        displayOnController(controller, animated: true, completion: nil)
-    }
-
-    ///
     /// Dismiss view controller with animation and completion handler.
-    ///
     open override func dismiss(animated: Bool, completion: (() -> Void)?) {
-        let timeInterval = TimeInterval(animated ? 0.2 : 0)
-        prepareForAnimation(false)
-
-        UIView.animate(withDuration: timeInterval, animations: {
-            self.prepareForAnimation(true)
-        }, completion: { _ in
-            super.dismiss(animated: false, completion: {
-                completion?()
+        let timeInterval = TimeInterval(animated
+            ? 0.2
+            : 0)
+        UIView.animate(
+            withDuration: timeInterval,
+            animations: {
+                self.updateTableViewFrame(true)
+            }, completion: { _ in
+                super.dismiss(animated: false, completion: {
+                    completion?()
+                })
             })
-        })
     }
 
-    fileprivate func prepareForAnimation(_ initial: Bool) {
-        updateTableViewFrameForCurrentSize()
-        updateTableInsetsForCurrentHeight()
+    private var contentHeight: CGFloat {
+        var height: CGFloat = CGFloat(Constants.cellHeight) * CGFloat(itemsList.count)
+        height += displayCancel
+            ? CGFloat(Constants.cellHeight) + 10
+            : 0
+        return height
+    }
 
-        tableView.alpha = ( position == .center ? 0 : 1 )
-
+    private func updateTableViewFrame(_ initial: Bool) {
+        tableView.alpha = initial
+            ? 0
+            : 1
+        var insets: UIEdgeInsets = .zero
+        if #available(iOS 11.0, *) {
+            insets = view.safeAreaInsets
+        }
+        var width = min(view.bounds.height, view.bounds.width)
+        var height = max(view.bounds.height, view.bounds.width)
+        if view.bounds.height < view.bounds.width {
+            (width, height) = (height, width)
+        }
+        let sideSpacing: CGFloat = UIDevice.current.userInterfaceIdiom == .pad
+            ? width / 4
+            : Constants.sideMargin
+        let contentHeight = self.contentHeight
+        var rect: CGRect = .zero
+        switch position {
+        case .top:
+            rect = CGRect(
+                x: sideSpacing, y: Constants.sideMargin + insets.top,
+                width: width - 2 * sideSpacing, height: contentHeight)
+        case .bottom:
+            rect = CGRect(
+                x: sideSpacing, y: height - Constants.sideMargin - insets.top - contentHeight,
+                width: width - 2 * sideSpacing, height: contentHeight)
+        case .center:
+            rect = CGRect(
+                x: sideSpacing,
+                y: (height - insets.top - contentHeight) / 2,
+                width: width - 2 * sideSpacing, height: contentHeight)
+        }
         if initial {
             switch position {
-            case .top:      tableView.frame = tableView.frame.offsetBy(dx: 0, dy: -tableView.contentSize.height - Constants.SideMargin)
-            case .bottom:   tableView.frame = tableView.frame.offsetBy(dx: 0, dy: tableView.contentSize.height + Constants.SideMargin)
-            case .center:   break
+            case .top:
+                rect = rect.offsetBy(dx: 0, dy: -contentHeight)
+            case .bottom:
+                rect = rect.offsetBy(dx: 0, dy: contentHeight)
+            case .center:
+                break
             }
-        } else {
-            tableView.alpha = 1
         }
+        tableView.frame = rect
     }
 
-    // MARK: Actions
+    // MARK: - Actions
 
-    func pressedBackground(_ sender: AnyObject?) {
+    @objc func pressedBackground(_ sender: AnyObject?) {
         guard hideOnBackgorundTap else { return }
         dismiss(animated: true, completion: nil)
     }
 
-    // MARK: Position table view
+    // MARK: - Position table view
 
     open override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        updateTableViewFrameForSize(size)
-        updateTableInsetsForHeight(size.height - Constants.SideMargin * 2.5)
-        tableView.reloadData()
-    }
-
-    fileprivate func updateTableInsetsForCurrentHeight() {
-        updateTableInsetsForHeight(view.bounds.height - Constants.SideMargin * 2.5)
-    }
-
-    fileprivate func updateTableInsetsForHeight(_ height: CGFloat) {
-        let contentHeight: CGFloat = CGFloat(itemsList.count) * Constants.CellHeight
-            + ( displayCancel ? Constants.CellHeight : 0 )
-
-        switch position {
-        case .top:
-            tableView.contentInset = UIEdgeInsets.zero
-
-        case .center:
-            let inset: CGFloat = max((height - contentHeight) / 2.0, 0)
-            tableView.contentInset = UIEdgeInsetsMake(inset, 0, -inset, 0);
-
-        case .bottom:
-            let inset: CGFloat = max(height - contentHeight, 0)
-            tableView.contentInset = UIEdgeInsetsMake(inset, 0, 0, 0);
-        }
-    }
-
-    fileprivate func updateTableViewFrameForCurrentSize() {
-        updateTableViewFrameForSize(super.view.bounds.size)
-    }
-
-    fileprivate func updateTableViewFrameForSize(_ size: CGSize) {
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            let width = size.width * 0.5
-            tableView.frame = CGRect(x: (size.width - width) / 2, y: Constants.SideMargin,
-                                     width: width - Constants.SideMargin * 2,
-                                     height: size.height - Constants.SideMargin * 2)
-        } else {
-            tableView.frame = CGRect(x: Constants.SideMargin, y: Constants.SideMargin,
-                                     width: size.width - Constants.SideMargin * 2,
-                                     height: size.height - Constants.SideMargin * 2)
-        }
+        super.viewWillTransition(to: size, with: coordinator)
+        coordinator.animate(alongsideTransition: { _ in
+            self.updateTableViewFrame(false)
+        }, completion: nil)
     }
 }
 
-///
-/// UITableViewDelegate
-///
+/// `UITableViewDelegate` protocol implementation
 extension RevealMenuController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return Constants.CellHeight
+        return Constants.cellHeight
     }
 
     public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         guard section != 0 else { return 0 }
-        return ( displayCancel ? Constants.SideMargin / 2 : 0 )
+        return displayCancel
+            ? Constants.sideMargin / 2
+            : 0
     }
 }
 
-///
-/// UITableViewDataSource
-///
+/// `UITableViewDataSource` protocol implementation
 extension RevealMenuController: UITableViewDataSource {
-
     public func numberOfSections(in tableView: UITableView) -> Int {
-        return ( displayCancel ? 2 : 1 )
+        return displayCancel
+            ? 2
+            : 1
     }
 
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -307,8 +283,7 @@ extension RevealMenuController: UITableViewDataSource {
     }
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CellIdentifier, for: indexPath) as! RevealMenuCell
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellIdentifier, for: indexPath) as! RevealMenuCell
         if (indexPath as NSIndexPath).section == 1 {
             cell.customizeForCancel()
         } else {
@@ -319,10 +294,11 @@ extension RevealMenuController: UITableViewDataSource {
                 cell.customizeFor(actionGroup: actionGroup)
             }
         }
-
-        cell.customizeCorners(topCornered: (indexPath as NSIndexPath).row == 0, bottomCornered: (indexPath as NSIndexPath).section == 1 || (indexPath as NSIndexPath).row == itemsList.count - 1)
+        cell.customizeCorners(
+            topCornered: (indexPath as NSIndexPath).row == 0,
+            bottomCornered: (indexPath as NSIndexPath).section == 1 ||
+                (indexPath as NSIndexPath).row == itemsList.count - 1)
         cell.delegate = self
-
         return cell
     }
 
@@ -331,52 +307,32 @@ extension RevealMenuController: UITableViewDataSource {
     }
 }
 
-///
-/// RevealMenuCellDelegate
-///
+/// `RevealMenuCellDelegate` protocol implementation
 extension RevealMenuController: RevealMenuCellDelegate {
-
     public func revealMenuCell(_ cell: RevealMenuCell, didPressedWithItem item: RevealMenuActionProtocol) {
         if let action = item as? RevealMenuAction {
             action.handler?(self, action)
-        } else if
-            let actionGroup = item as? RevealMenuActionGroup,
-            let cellIndexPath = tableView.indexPath(for: cell)
-        {
+        } else if let actionGroup = item as? RevealMenuActionGroup {
             if let index = openedItems.index(where: { $0 === actionGroup }) {
                 openedItems.remove(at: index)
-
-                var deleteIndexPaths: [IndexPath] = []
-                for index in 1...actionGroup.actions.count {
-                    deleteIndexPaths.append(IndexPath(row: (cellIndexPath as NSIndexPath).row + index, section: 0))
-                }
-
-                UIView.animate(withDuration: 0.2, animations: {
-                    self.tableView.beginUpdates()
-                    self.tableView.reloadRows(at: [ cellIndexPath ], with: .fade)
-                    self.tableView.deleteRows(at: deleteIndexPaths, with: .fade)
-                    self.updateTableInsetsForCurrentHeight()
-                    self.tableView.endUpdates()
-                })
+                tableView.reloadData()
+                UIView.animate(
+                    withDuration: 0.2,
+                    animations: {
+                        self.updateTableViewFrame(false)
+                    })
             } else {
                 openedItems.append(actionGroup)
-
-                var insertIndexPaths: [IndexPath] = []
-                for index in 1...actionGroup.actions.count {
-                    insertIndexPaths.append(IndexPath(row: (cellIndexPath as NSIndexPath).row + index, section: 0))
-                }
-
-                UIView.animate(withDuration: 0.2, animations: {
-                    self.tableView.beginUpdates()
-                    self.tableView.reloadRows(at: [ cellIndexPath ], with: .fade)
-                    self.tableView.insertRows(at: insertIndexPaths, with: .fade)
-                    self.updateTableInsetsForCurrentHeight()
-                    self.tableView.endUpdates()
-                })
+                tableView.reloadData()
+                UIView.animate(
+                    withDuration: 0.2,
+                    animations: {
+                        self.updateTableViewFrame(false)
+                    })
             }
         } else {
             tableView.reloadData()
-            updateTableInsetsForCurrentHeight()
+            updateTableViewFrame(false)
         }
     }
 
@@ -386,14 +342,9 @@ extension RevealMenuController: RevealMenuCellDelegate {
     
 }
 
-///
 /// Status bar
-///
 extension RevealMenuController {
-
     override open var preferredStatusBarStyle: UIStatusBarStyle {
         return statusBarStyle
     }
-    
 }
-
